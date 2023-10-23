@@ -59,3 +59,58 @@ int* RandomHashFun(int M, int n) {
     }
     return fnTable;
 }
+
+int main() {
+    srand(time(NULL));
+
+    HashTable ht1;
+    ht1.n = SIZE;
+    ht1.h = mi_Mod;
+    for (int i = 0; i < SIZE; i++) {
+        ht1.bucket[i] = (int*)malloc(sizeof(int));
+        ht1.bucket[i][0] = 0;
+    }
+
+    int x = 1234567;
+    long long int y = 76554334234;
+
+    insert(&ht1, x);
+
+    int result = find(&ht1, x);
+    if (result != -1) {
+        printf("El elemento %d se encuentra en la tabla hash.\n", result);
+    } else {
+        printf("El elemento %d no se encuentra en la tabla hash.\n", x);
+    }
+
+    int z = 42;
+    insert(&ht1, z);
+
+    result = find(&ht1, z);
+    if (result != -1) {
+        printf("El elemento %d se encuentra en la tabla hash.\n", result);
+    } else {
+        printf("El elemento %d no se encuentra en la tabla hash.\n", z);
+    }
+
+    result = delete(&ht1, x);
+    if (result != -1) {
+        printf("Se ha eliminado el elemento %d de la tabla hash.\n", result);
+    } else {
+        printf("No se encontró el elemento %d para eliminar en la tabla hash.\n", x);
+    }
+
+    int result2 = delete(&ht1, 999);
+    if (result2 != -1) {
+        printf("Se ha eliminado el elemento %d de la tabla hash.\n", result2);
+    } else {
+        printf("No se encontró el elemento para eliminar en la tabla hash.\n");
+    }
+
+    for (int i = 0; i < SIZE; i++) {
+        free(ht1.bucket[i]);
+    }
+
+    return 0;
+}
+
