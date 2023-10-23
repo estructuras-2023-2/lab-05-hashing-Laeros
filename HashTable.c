@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define SIZE 10
+
 typedef struct HashTable {
     int n;
     int* bucket[SIZE];
@@ -113,4 +115,3 @@ int main() {
 
     return 0;
 }
-
